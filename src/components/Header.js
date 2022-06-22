@@ -7,15 +7,26 @@ import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
 import BusinessCenterIcon from '@mui/icons-material/BusinessCenter';
 import ChatIcon from '@mui/icons-material/Chat';
 import NotificationsIcon from '@mui/icons-material/Notifications';
+import { useDispatch} from 'react-redux';
+import { logout} from '../features/userSlice';
+import { auth } from './Firebase';
 
 function Header() {
+    const dispatch = useDispatch();
+
+    const logoutApp =() => {
+        console.log('logged out');
+        dispatch(logout());
+        auth.signOut();
+    };
+
   return (
     <HeaderContainer>
         <HeaderLeft>
             <img src="https://www.freeiconspng.com/uploads/linkedin-logo-3.png" alt=''/>
             <Search>
                 <SearchIcon/>
-                <input type="text"/>
+                <input type="text" placeholder='Search'/>
             </Search>
         </HeaderLeft>
         <HeaderRight>
@@ -24,7 +35,11 @@ function Header() {
             <HeaderOption Icon ={BusinessCenterIcon} title="Jobs"/>
             <HeaderOption Icon ={ChatIcon} title="Messaging"/>
             <HeaderOption Icon ={NotificationsIcon} title="Notifications"/>
-            <HeaderOption avatar='https://www.freeiconspng.com/uploads/linkedin-logo-3.png' title='me'/>
+            <HeaderOption 
+                avatar= {true}
+                title='me'
+                onClick={logoutApp}
+            />
         </HeaderRight>
     </HeaderContainer>
   )
@@ -50,6 +65,7 @@ const HeaderLeft = styled.div`
         margin-right: 10px;
     }
 `
+
 const HeaderRight = styled.div`
     display : flex;
 `
@@ -57,10 +73,11 @@ const Search = styled.div`
     display: flex;
     align-items: center;
     padding: 10px;
-    border radius: 5px;
+    border-radius: 10px;
     height: 22px;
     color: gray;    
     background-color:#eef3f8;
+    width: 300px;
     input{
         outline: none;
         border: none;

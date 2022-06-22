@@ -1,9 +1,11 @@
 import { Avatar } from '@mui/material';
 import React from 'react'
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { selectUser } from '../features/userSlice';
 
 function Sidebar() {
-
+    const user = useSelector(selectUser);
     const recentitem = (topic) =>(
         <SidebarRecentItem>
             <span className="sidebar__hash">#</span>
@@ -14,9 +16,11 @@ function Sidebar() {
     <SidebarContainer>
         <SidebarTop>
             <img src="https://images.unsplash.com/photo-1604079628040-94301bb21b91?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80" alt="" />
-            <Avatar/>
-            <h2>Abhayraj Malviya</h2>
-            <h4>abhayrajmalviya@gmail.com</h4>
+            <Avatar  className="avt" src={user?.photoURL} >
+                {user.displayName[0]}
+            </Avatar>
+            <h2>{user.displayName}</h2>
+            <h4>{user.email}</h4>
         </SidebarTop>
         <SidebarStats>
             <SidebarStat>
@@ -61,7 +65,13 @@ const SidebarTop = styled.div`
     border-top-right-radius: 10px;
     background-color: white; 
     padding-bottom: 10px;
-
+    
+    .avt {
+        object-fit: cover !important; 
+        margin-bottom: 10px;
+        z-index: 999;
+        border :1px solid black;
+    }
     img{
         margin-bottom: -20px;
         width: 100%;
@@ -69,9 +79,6 @@ const SidebarTop = styled.div`
         border-top-left-radius: 10px;
         border-top-right-radius: 10px;
         object-fit: cover;
-    }
-    Avatar{
-        margin-bottom:10px;
     }
     h4{
         color: gray;

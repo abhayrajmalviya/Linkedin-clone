@@ -9,8 +9,12 @@ import Post from './Post';
 import { db } from './Firebase';
 import firebase from 'firebase/compat/app';
 import "firebase/compat/firestore"
+import { useSelector } from 'react-redux';
+import { selectUser } from '../features/userSlice';
+import FlipMove from 'react-flip-move';
 
 function Feed() {
+    const user = useSelector(selectUser);
     const [input, setInput] = useState('')
     const [posts, setPosts] = useState([]);
 
@@ -28,10 +32,10 @@ function Feed() {
     const sendPost = e =>{
         e.preventDefault();
         db.collection('posts').add({
-            name: 'Abhayraj Malviya',
-            description: 'this is a post',
+            name: user.displayName,
+            description: user.email,
             message : input,
-            photoUrl : '',
+            photoUrl : user.photoURL || "",
             timestamp : firebase.firestore.FieldValue.serverTimestamp(),
         }) ;   
         setInput('');
@@ -53,25 +57,19 @@ function Feed() {
                 <InputOptions Icon={EventNoteIcon} title="Write article"  color="#7FC1SE"/>
             </FeedInputOptions>
         </FeedInputContainer>
-        {
-
-            
-            posts.map(({id, data:{name, description, message, photoUrl}})=>(
-                console.log(message),
-                <Post
-                    key ={id}
-                    name = {name}
-                    description = {description}
-                    message ={message}
-                    photoUrl = {photoUrl}
-                />
-            ))
-        }
-        {/* <Post 
-            name="Abhayraj Malviya" 
-            description="this is a test description" 
-            message="wow... this worked!"
-        /> */}
+        <FlipMove>
+            {
+                posts.map(({id, data:{name, description, message, photoUrl}})=>(
+                    <Post
+                        key ={id}
+                        name = {name}
+                        description = {description}
+                        message ={message}
+                        photoUrl = {photoUrl}
+                    />
+                ))
+            }
+        </FlipMove>
     </FeedContainer>
 
   )

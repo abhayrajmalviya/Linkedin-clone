@@ -1,13 +1,16 @@
 import styled from 'styled-components';
-import { Avatar, Icon } from '@mui/material';
+import { Avatar} from '@mui/material';
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { selectUser } from '../features/userSlice';
 
-function HeaderOption({avatar , Icon ,title}) {
+function HeaderOption({avatar , Icon ,title, onClick}) {
+    const user = useSelector(selectUser);
+
   return (
-    <HeaderOptionContainer>
+    <HeaderOptionContainer onClick={onClick}>
         {Icon && <Icon className='avt'/>}
-        {avatar &&  <Avatar className="avt" src={avatar} />
-        }
+        {avatar &&  <Avatar className="avt" src={user?.photoURL}>{user?.displayName[0] }</Avatar>}
         <h3>{title}</h3>
     </HeaderOptionContainer>
   )
