@@ -36,7 +36,7 @@ function App() {
       { !user ?(
         <Login/>
       ):(
-          <AppBody className="app__body">
+          <AppBody>
             <Header/>
             <Home/>
           </AppBody>

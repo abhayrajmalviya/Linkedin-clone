@@ -53,59 +53,76 @@ function Login() {
     };
   return (
     <LoginContainer>
-        {/* <img 
-            src="" 
-            alt="" 
-        /> */}
-        <form>
-            <input 
-                type="text" 
-                placeholder='Full Name(require if register)' 
-                value={name}
-                onChange={e => setName(e.target.value)}
-            />
-            <input 
-                type="text"  
-                placeholder='Profile pic url (optional)'
-                value={profilePicture}
-                onChange={e => setProfilePicture(e.target.value)} 
-            />
-            <input 
-                type="email" 
-                value={email} 
-                onChange={e => setEmail(e.target.value)} 
-                placeholder="Email"
-            />
-            <input 
-                type="password" 
-                placeholder='Password'
-                value={password} 
-                onChange= {e => setPassword(e.target.value)} 
-            />
-            <button type='submit' onClick={loginToApp}>Sign In</button>
-        </form>
-        <p>Not a member?{" "}
-            <span className='login__register' onClick={register}>Register Now</span>
-        </p>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/01/LinkedIn_Logo.svg" alt="" />
+        <LoginContainerBody>
+            <LoginContainerBodyHeader>
+                <h1>Sign in / Register</h1>
+                <p>Stay updated on your professional world</p>
+            </LoginContainerBodyHeader>
+            <form>
+                <input 
+                    type="text" 
+                    placeholder='Full Name(require if register)' 
+                    value={name}
+                    onChange={e => setName(e.target.value)}
+                />
+                <input 
+                    type="text"  
+                    placeholder='Profile pic url (optional)'
+                    value={profilePicture}
+                    onChange={e => setProfilePicture(e.target.value)} 
+                />
+                <input 
+                    type="email" 
+                    value={email} 
+                    onChange={e => setEmail(e.target.value)} 
+                    placeholder="Email"
+                />
+                <input 
+                    type="password" 
+                    placeholder='Password'
+                    value={password} 
+                    onChange= {e => setPassword(e.target.value)} 
+                />
+                <button type='submit' onClick={loginToApp}>Sign In</button>
+            </form>
+            <p className='register'>Not a member?{" "}
+                <span className='login__register' onClick={register}>Register Now</span>
+            </p>
+        </LoginContainerBody>
     </LoginContainer>
   )
 }
 
 const LoginContainer = styled.div`
+   background-color: white;
+   width : 100%;
+   img{
+        height: 40px;
+        padding : 20px;
+   }
+`;
+
+const LoginContainerBody = styled.div`
     display: grid;
-    place-item: center;
+    margin-top: 20px;
+    padding-bottom: 20px;
+    justify-content: center;
+    border-radius: 30px;
+    border: 1px solid lightgray;
     margin-left: auto;
     margin-right: auto;
-    padding-top: 100px;
-    padding-bottom: 100px;
+    width: 450px;
+    box-shadow: 0 4px 12px rgb(0 0 0 / 15%);
 
     .login__register{
         color: #007BB6;
         cursor: pointer;
     }
-
-    p{
+    .register{
         margin-top: 20px;
+        margin-bottom: 20px;
+        font-size: 20px;
     }
 
     img {
@@ -117,14 +134,15 @@ const LoginContainer = styled.div`
     form {
         display:flex;
         flex-direction: column;
+        margin-top:20px;
 
         input{
             width: 350px;
             height: 50px;
             font-size: 20px;
             padding-left: 10px;
-            margin-bottom : 10px;
-            border-radius: 10px
+            margin-bottom : 20px;
+            border-radius: 10px;
         }
         button{
             width: 365px;
@@ -133,6 +151,18 @@ const LoginContainer = styled.div`
             color: white;
             background-color: #007BB6;
         }
+    }
+`;
+
+const LoginContainerBodyHeader = styled.div`
+    padding-top: 20px;
+    h1{
+        font-weight : 500;
+        font-size : 34px;
+    }
+    p{
+        margin:0px;
+        font-weight : 400;
     }
 `;
 export default Login
