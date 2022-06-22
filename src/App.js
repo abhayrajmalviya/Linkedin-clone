@@ -46,7 +46,6 @@ function App() {
 }
 const AppBody = styled.div`
     width:100%;
-
 `;
 const AppContainer = styled.div`
   display :flex;

@@ -12,6 +12,8 @@
 /build
 /src/components/Firebase.js
 
+/.firebase
+
 # misc
 .DS_Store
 .env.local
