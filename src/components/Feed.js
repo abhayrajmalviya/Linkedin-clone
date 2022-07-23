@@ -47,10 +47,10 @@ function Feed() {
         <FeedInputContainer>
             <FeedInput>
                 <CreateIcon/>
-                <form>
-                    <input type="text" value={input} onChange={e => setInput(e.target.value)}/>
-                    <button type="submit" onClick={sendPost}>send</button>
-                </form>
+                    <form>
+                        <input type="text" value={input} onChange={e => setInput(e.target.value)}/>
+                        <button type="submit" onClick={sendPost}>send</button>
+                    </form>
             </FeedInput>
             <FeedInputOptions>
                 <InputOptions Icon={ImageIcon} title="Photo"  color="#70B5F9"/>

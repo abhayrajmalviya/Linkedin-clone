@@ -53,7 +53,7 @@ function Login() {
     };
   return (
     <LoginContainer>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/0/01/LinkedIn_Logo.svg" alt="" />
+        {/* <img src="https://upload.wikimedia.org/wikipedia/commons/0/01/LinkedIn_Logo.svg" alt="" /> */}
         <LoginContainerBody>
             <LoginContainerBodyHeader>
                 <h1>Sign in / Register</h1>
